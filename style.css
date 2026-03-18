@@ -1,14 +1,14 @@
 /* ============================
    W4 練習 Chatbot 樣式
-   學生練習：修改顏色、字體大小等
+   日系配色：櫻花粉 × 米白 × 薰衣草
    ============================ */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Noto Sans TC', sans-serif;
-  /* 練習：把背景色改成你喜歡的顏色 */
-  background-color: #f0f4f8;
+  /* 日系背景：溫暖米白帶淡粉 */
+  background-color: #f7f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,18 +16,18 @@ body {
 }
 
 .container {
-  background: white;
+  background: #fffaf9;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 24px rgba(180, 120, 130, 0.15);
   width: 480px;
   max-width: 95vw;
   overflow: hidden;
 }
 
 header {
-  /* 練習：把標題列顏色從藍色改成其他顏色 */
-  background: #4f8ef7;
-  color: white;
+  /* 日系標題列：柔和的鈍粉（薄墨桃色） */
+  background: #c8849a;
+  color: #fff8f8;
   padding: 20px 24px;
 }
 
@@ -41,6 +41,7 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background-color: #fffaf9;
 }
 
 .message {
@@ -52,16 +53,17 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
 }
 
 .message.bot {
-  background: #f0f4f8;
-  color: #333;
+  /* Bot 訊息：淡薰衣草紫米色 */
+  background: #ede8f0;
+  color: #4a3f5c;
   align-self: flex-start;
   border-bottom-left-radius: 4px;
 }
 
 .message.user {
-  /* 練習：把使用者訊息顏色從綠色改成你喜歡的顏色 */
-  background: #4caf87;
-  color: white;
+  /* 使用者訊息：抹茶灰綠（和風） */
+  background: #8aab96;
+  color: #fff;
   align-self: flex-end;
   border-bottom-right-radius: 4px;
 }
@@ -70,27 +72,28 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
   display: flex;
   padding: 16px;
   gap: 10px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #f0dde2;
+  background: #fffaf9;
 }
 
 .input-area input {
   flex: 1;
   padding: 10px 14px;
-  border: 1px solid #ddd;
+  border: 1px solid #e8c8d0;
   border-radius: 8px;
   font-size: 14px;
   outline: none;
+  background: #fff8f9;
+  color: #4a3f5c;
 }
 
 .input-area input:focus {
-  border-color: #4f8ef7;
+  border-color: #c8849a;
 }
 
 .input-area button {
-  /* 練習：把按鈕顏色改成你喜歡的顏色
-     conflict-a 分支：改成 #4f8ef7（藍色）
-     conflict-b 分支：改成 #e84393（粉色）  */
-  background: #4f8ef7;
+  /* 按鈕：與 header 同色系的桃粉 */
+  background: #c8849a;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -100,5 +103,5 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
 }
 
 .input-area button:hover {
-  opacity: 0.85;
+  background: #b8708a;
 }
