@@ -1,125 +1,194 @@
 /* ============================
-   W4 練習 Chatbot 樣式
-   日系配色：櫻花粉 × 米白 × 薰衣草
+   W4 練習 Chatbot — 現代聊天室樣式
+   設計風格：iMessage / LINE 風
    ============================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── 頁面背景 ── */
 body {
   font-family: 'Noto Sans TC', sans-serif;
-  /* 日系背景：溫暖米白帶淡粉 */
-  background-color: #f7f0f0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
+/* ── 聊天室容器 ── */
 .container {
-  background: #fffaf9;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(180, 120, 130, 0.15);
-  width: 480px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  width: 420px;
   max-width: 95vw;
   overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 
+/* ── 標題列 ── */
 header {
-  /* 日系標題列：柔和的鈍粉（薄墨桃色） */
-  background: #c8849a;
-  color: #fff8f8;
-  padding: 20px 24px;
-}
-
-header h1 { font-size: 20px; }
-header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
-
-#chat-box {
-  height: 360px;
-  overflow-y: auto;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 18px 20px 14px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background-color: #fffaf9;
+  gap: 2px;
 }
 
-.message {
-  max-width: 75%;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.5;
+header h1 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.3px;
 }
 
-.message.bot {
-  /* Bot 訊息：淡薰衣草紫米色 */
-  background: #ede8f0;
-  color: #4a3f5c;
+header .subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+
+/* 在線狀態小點 */
+header h1::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 6px #4ade80;
+}
+
+/* ── 深色模式切換按鈕 ── */
+.dark-toggle {
+  margin-top: 8px;
   align-self: flex-start;
-  border-bottom-left-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: inherit;
+  transition: background 0.2s;
 }
 
+.dark-toggle:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ── 對話區 ── */
+#chat-box {
+  height: 380px;
+  overflow-y: auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+#chat-box::-webkit-scrollbar { width: 4px; }
+#chat-box::-webkit-scrollbar-track { background: transparent; }
+#chat-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+/* ── 訊息泡泡 ── */
+.message {
+  max-width: 72%;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  word-break: break-word;
+  animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Bot 訊息（左邊） */
+.message.bot {
+  background: rgba(255, 255, 255, 0.12);
+  color: #f0f0f0;
+  align-self: flex-start;
+  border-radius: 18px 18px 18px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 使用者訊息（右邊） */
 .message.user {
-  /* 使用者訊息：抹茶灰綠（和風） */
-  background: #8aab96;
-  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
   align-self: flex-end;
-  border-bottom-right-radius: 4px;
+  border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
+/* ── 輸入區 ── */
 .input-area {
   display: flex;
-  padding: 16px;
+  align-items: center;
+  padding: 12px 16px;
   gap: 10px;
-  border-top: 1px solid #f0dde2;
-  background: #fffaf9;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .input-area input {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #e8c8d0;
-  border-radius: 8px;
+  padding: 11px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
   font-size: 14px;
+  font-family: inherit;
+  color: #ffffff;
   outline: none;
-  background: #fff8f9;
-  color: #4a3f5c;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.input-area input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .input-area input:focus {
-  border-color: #c8849a;
+  border-color: #6366f1;
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .input-area button {
-  background: #e84393;  /* conflict-b 粉色 */
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.45);
 }
 
 .input-area button:hover {
-  background: #b8708a;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.6);
 }
 
-/* ===== feature/dark-mode 新增 ===== */
-.dark-toggle {
-  margin-top: 8px;
-  background: rgba(255,255,255,0.2);
-  border: none;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
+.input-area button:active {
+  transform: scale(0.95);
 }
-
-body.dark { background-color: #1e1e2e; }
-body.dark .container { background: #313244; color: #cdd6f4; }
-body.dark header { background: #1e1e2e; }
-body.dark .message.bot { background: #45475a; color: #cdd6f4; }
-body.dark .input-area { border-top-color: #45475a; }
-body.dark .input-area input { background: #45475a; color: #cdd6f4; border-color: #585b70; }
