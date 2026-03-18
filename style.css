@@ -92,8 +92,7 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
 }
 
 .input-area button {
-  /* 按鈕：與 header 同色系的桃粉 */
-  background: #c8849a;
+  background: #e84393;  /* conflict-b 粉色 */
   color: white;
   border: none;
   padding: 10px 20px;
